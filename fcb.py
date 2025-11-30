@@ -3,7 +3,7 @@ from tkinter import SE
 
 
 class FCB:
-    def __init__(self, name, size, start_block, created, modified, fType,abs_path):
+    def __init__(self, name, size, block_list, created, modified, fType,abs_path):
         """
         Store metadata for a file.
         name: filename (string)
@@ -15,11 +15,9 @@ class FCB:
         self.type = fType                   #txt, img, dir, etc.
         self.path = abs_path
         self.size = size
-        self.start_block = start_block
+        self.block_list = block_list
         self.created = created
         self.modified = modified
-        self.next_block = list()              # Pointer to next block in file chain
-        pass
 
     def to_dict(self):
         """
