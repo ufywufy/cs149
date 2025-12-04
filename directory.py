@@ -22,6 +22,13 @@ root {
 }
 """
 
+def initial_directory():
+    global directory
+    directory = {
+            "type": "folder",
+            "contents": {}
+        }
+
 def load_directory():
     """
     Load directory.json and rebuild the directory table.
@@ -32,10 +39,7 @@ def load_directory():
         with open(DIRECTORY_PATH, "r") as f:
             directory = json.load(f)
     except FileNotFoundError:
-        directory = {
-            "type": "folder",
-            "contents": {}
-        }
+        initial_directory()
 
 def save_directory():
     """

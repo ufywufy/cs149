@@ -1,19 +1,17 @@
 import json
-from tkinter import SE
-
 
 class FCB:
-    def __init__(self, name, size, block_list, created, modified, fType,abs_path):
+    def __init__(self, name, size, block_list, created, modified):
         """
-        Store metadata for a file.
-        name: filename (string)
-        size: file size in bytes
-        start_block: where file begins on disk
-        timestamps: created/modified times
+        File Control Block (FCB) metadata for a file or directory.
+
+        name:       filename (string)
+        size:       file size in bytes
+        block_list: list of disk blocks used by file
+        created:    timestamp (string or datetime)
+        modified:   timestamp
         """
         self.name = name
-        self.type = fType                   #txt, img, dir, etc.
-        self.path = abs_path
         self.size = size
         self.block_list = block_list
         self.created = created
@@ -25,28 +23,20 @@ class FCB:
         """
         return {
             "name": self.name,
-            "type": self.type,
-            "path": self.path,
             "size": self.size,
-            "start_block": self.start_block,
+            "block_list": self.block_list,
             "created": self.created,
             "modified": self.modified,
-            "next_block": self.next_block
         }
 
 
-    def from_dict(cls,data):
-        """
-        Convert a dictionary back into an FCB object.
-        """
+    @classmethod
+    def from_dict(cls, data):
         return cls(
             name=data["name"],
-            type=data["type"],
-            path=data["path"],
             size=data["size"],
-            start_block=data["start_block"],
+            block_list=data["block_list"],
             created=data["created"],      
             modified=data["modified"],
-            next_block=data["next_block"]
         )
 
