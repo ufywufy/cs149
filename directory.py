@@ -86,7 +86,8 @@ def find_file(filename):
         file_data = directory["contents"][filename]
         
         if isinstance(file_data, FCB):
-            return file_data.to_dict()
+            return file_data
     
     return None
+
 
