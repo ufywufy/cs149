@@ -61,7 +61,7 @@ def main():
                 filename = args[1]
                 fcb = otherFunc.find(filename)
                 if fcb:
-                    print(f"Found: {fcb}")
+                    print(f"Found: {fcb.to_dict()}")
                 else:
                     print(f"File '{filename}' not found.")
 
@@ -119,3 +119,4 @@ def reset():
 
 if __name__ == "__main__":
     main()
+
